@@ -1,0 +1,16 @@
+#docker-compose.yml
+services:
+  db:
+    image: postgres:16
+    container_name: moviejourney-db
+    environment:
+      POSTGRES_DB: moviejourney
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev1234
+    ports:
+      - "6432:5432"
+    volumes:
+      - moviejourney-db-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  moviejourney-db-data:
