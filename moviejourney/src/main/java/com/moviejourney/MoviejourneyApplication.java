@@ -1,4 +1,4 @@
-package com.moviejourney.moviejourney;
+package com.moviejourney;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
