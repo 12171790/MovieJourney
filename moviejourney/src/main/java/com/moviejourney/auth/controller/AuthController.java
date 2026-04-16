@@ -4,6 +4,7 @@ import com.moviejourney.auth.dto.LoginRequest;
 import com.moviejourney.auth.dto.LoginResponse;
 import com.moviejourney.auth.dto.SignupRequest;
 import com.moviejourney.auth.service.AuthService;
+import com.moviejourney.global.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,14 +22,14 @@ public class AuthController
   private final AuthService authService;
 
   @PostMapping("/signup")
-  public ResponseEntity<Void> signup(@RequestBody @Valid SignupRequest request) {
+  public ResponseEntity<ApiResponse<Void>> signup(@RequestBody @Valid SignupRequest request) {
     authService.signup(request);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
+    return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(null));
   }
 
   @PostMapping("/login")
-  public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request) {
+  public ResponseEntity<ApiResponse<LoginResponse>> login(@RequestBody @Valid LoginRequest request) {
     LoginResponse response = authService.login(request);
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(ApiResponse.success(response));
   }
 }

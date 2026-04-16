@@ -20,7 +20,9 @@ public class SecurityConfig
   {
     http.csrf(csrf -> csrf.disable())
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-      .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll()
+      .authorizeHttpRequests(auth -> auth
+        .requestMatchers("/auth/**").permitAll()
+        .requestMatchers("/movies/**").permitAll()
         .anyRequest().authenticated());
 
     return http.build();
